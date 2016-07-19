@@ -1,0 +1,57 @@
+# this is a zon feature that covers the service itself
+neighborhood-hackweek:
+    type: webservice
+    description: "A new flask service that maps home information by neighborhood for Hackweek 12"
+    # List of email address to notify if there is a problem with this zon
+    # This should be a group email alias.  It can be used as a pivot to show all
+    # Zons a group is responsible for as well.
+    contact:
+        - brandena@zillowgroup.com
+
+    environment: {{env_name}}
+    # Host to be monitored.  this will be specialized automatically during
+    # "dt configure ..."
+    host: INSERT_VIP_HERE
+
+    # Port that the service runs on when access via its host
+    port: 80
+
+    # A list of url paths to endpoints that define tests for the service.
+    zon:
+        - /monitor/zon/
+
+    # The path to an endpoint that indicates your service is up. Currently
+    # required but unused by zon.
+    ping:
+        - /monitor/ping
+
+    # default inline tests
+    tests:
+      # this test counts the # of 500 error response returned by
+      # your service. It will fail if excessively high, above 2 per second
+      500s within expected bounds:
+        description: Count total 500s in neighborhood-hackweek
+        type: access_log_monitor
+        production_safe: True
+        config:
+          limits:
+            max_error_count: 2
+          regexes:
+            rsp: [ '500' ]
+            app: [ '{{env_name }}.access-a.neighborhood-hackweek' ]
+          routing_prefixes: [ '{{env_name}}.access-a.neighborhood-hackweek' ]
+
+# this Zon feature covers every host individually.
+# As well as knowing if your service is completely down
+# It's good to know if an individual service instance on host is down.
+neighborhood-hackweek-hosts:
+    type: webservice
+    description: "A new flask service that maps home information by neighborhood for Hackweek 12's hosts"
+    contact:
+        - brandena@zillowgroup.com
+
+    environment: {{env_name}}
+    host: {{environment.fqdn}}
+    port: 8000
+    ping:
+        - /monitor/ping

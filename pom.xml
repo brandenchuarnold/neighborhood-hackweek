@@ -1,0 +1,137 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+        <artifactId>flask-parent</artifactId>
+        <groupId>com.zillow</groupId>
+        <version>1.0-SNAPSHOT</version>
+  </parent>
+  <groupId>com.zillow.distributions.services</groupId>
+  <artifactId>neighborhood-hackweek</artifactId>
+  <packaging>pom</packaging>
+  <version>${gte.com.zillow.distributions.services.neighborhood-hackweek.version}</version>
+  <name>neighborhood-hackweek</name>
+  <properties>
+    <flask.servicename>neighborhood-hackweek</flask.servicename>
+    <flask.basedir>${basedir}/neighborhood_hackweek</flask.basedir>
+    <nose.testpath>neighborhood-hackweek</nose.testpath>
+    <python.version>2.7</python.version>
+    <tg.servicename>neighborhood_hackweek</tg.servicename>
+  </properties>
+      <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <tarLongFileMode>gnu</tarLongFileMode>
+                    <descriptors>
+                        <descriptor>src/assemble/bin.xml</descriptor>
+                    </descriptors>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>clean-build</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <tasks>
+                                <delete dir="build" failonerror="false"/>
+                            </tasks>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>compile-build</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <tasks>
+                                <exec executable="python" failonerror="true">
+                                    <arg value="bootstrap.py"/>
+                                </exec>
+                                <exec executable="./bin/buildout" failonerror="true"/>
+                            </tasks>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>test-build</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <tasks>
+                                <exec executable="./bin/test" failonerror="true">
+                                        <arg value="-a !integration"/>
+                                </exec>
+                            </tasks>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>embed build version</id>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                          <tasks>
+                              <copy file="${flask.basedir}/templates/public/version.html.template"
+                                  tofile="${flask.basedir}/templates/public/version.html"
+                                  overwrite="true">
+                              <filterset begintoken="%" endtoken="%">
+                                <filter token="BUILD_VERSION" value="${project.version}"/>
+                              </filterset>
+                            </copy>
+                          </tasks>
+                        </configuration>
+                        <goals>
+                          <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+              <groupId>com.zillow.maven.extensions</groupId>
+              <artifactId>release-platform-manager-plugin</artifactId>
+              <executions>
+                <execution>
+                  <id>update-deployment-version</id>
+                  <goals>
+                    <goal>set-deploy-version</goal>
+                  </goals>
+                  <configuration>
+                    <artifactKey>mvn-service://neighborhood-hackweek</artifactKey>
+                    <config>
+                      <!--
+                      <ManifestConfigParams>
+                        <branch>master</branch>
+                        <env></env>
+                        </ManifestConfigParams>
+                      -->
+                    </config>
+                  </configuration>
+                </execution>
+                <execution>
+                  <id>module-tracker</id>
+                  <goals>
+                    <goal>module-tracker</goal>
+                  </goals>
+                </execution>
+              </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

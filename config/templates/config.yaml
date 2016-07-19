@@ -1,0 +1,7 @@
+{% set svc = val.environment %}
+# Note: val.environment is use as an example. Use your own service namespace.
+# https://zwiki.zillowgroup.net/display/~brente/Configuration+Template+Guide#ConfigurationTemplateGuide-Definitions
+
+ZillowWebHostName: {{ svc.ZillowWebHostName }}
+ZillowWebPort: {{ svc.ZillowWebPort }}
+SecureZillowWebPort: {{ val.web_ssl_config.SSLPort }}

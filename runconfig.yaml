@@ -1,0 +1,36 @@
+templates:
+  python: &python
+    annihilate:
+      - exec:
+          command: ../zsv-apache-mod_wsgi/dt-hooks/pre-annihilate
+    configure:
+      - exec:
+          command: >
+                    ../zillow-config-specializer/bin/zillow-config-specializer
+                    -e #{ENV}
+                    --manifest_config_root=#{MANIFEST_CONFIG_PATH}
+                    --config_target_root=config/current
+                    --config_values_root=../config-values
+                    --config_template_root=config/templates
+                    --manifest_config_env_hierarchy=#{MANIFEST_CONFIG_PATH}/configs/env_config.yaml
+      - exec:
+          command: ../zsv-apache-mod_wsgi/dt-hooks/post-configure
+    start:
+      - exec:
+          command: ../zsv-apache-mod_wsgi/dt-hooks/start
+      - exec:
+          command: sh ./config/current/zon/register.sh register
+    stop:
+      - exec:
+          command: sh ./config/current/zon/register.sh unregister
+      - exec:
+          command: ../zsv-apache-mod_wsgi/dt-hooks/stop
+    restart:
+      - exec:
+          command: ../zsv-apache-mod_wsgi/dt-hooks/restart
+    status:
+      - exec:
+          command: ../zsv-apache-mod_wsgi/dt-hooks/status
+services:
+  neighborhood-hackweek:
+    template: *python

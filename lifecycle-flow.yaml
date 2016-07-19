@@ -1,0 +1,4 @@
+source:
+  config:
+    type: 'python-service'
+  build-job-config: {}
