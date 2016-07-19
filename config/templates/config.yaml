@@ -5,3 +5,20 @@
 ZillowWebHostName: {{ svc.ZillowWebHostName }}
 ZillowWebPort: {{ svc.ZillowWebPort }}
 SecureZillowWebPort: {{ val.web_ssl_config.SSLPort }}
+
+# SQL
+{% macro db_host_instance(hostname, port, instancename) -%} 
+{{ hostname }}{% if instancename %}\{{ instancename.split('=')[-1] }}{% else %}:{{ port }}{% endif %}
+{%- endmacro -%} 
+
+{%- macro db_host(db) -%} 
+{% if db.connections %}{{ db_host_instance(db.connections[0].hostname,db.connections[0].port,db.connections[0].instancename) }}
+{%- else %}{{ db_host_instance(db.hosts[0].split(':')[0],db.hosts[0].split(':')[-1],db.instancename) }}{% endif %}
+{%- endmacro -%} 
+
+{%- macro db_uri(db, timeout=10, login_timeout=10, charset="utf8")-%}
+{% if db %}mssql+pymssql://{{ db.username }}:{{ db.password }}@{{ db_host(db) }}/{{ db.dbname }}?charset={{ charset }}&timeout={{ timeout }}
+{%- else %}MISSING DB CONFIG DICT{% endif -%} 
+{%- endmacro -%} 
+
+zillow.mssql.property: {{ db_uri(val.db_zillow_property) }}

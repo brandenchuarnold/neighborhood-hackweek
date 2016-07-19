@@ -2,6 +2,7 @@ import os
 import yaml
 from flask import Flask
 from .routes import add_routes
+from zillowdb.session.manager import DBTransaction
 
 
 def create_app(config_fn):
@@ -15,6 +16,7 @@ def create_app(config_fn):
     add_routes(app)
     config = load_config(config_fn)
     app.config.update(config)
+    DBTransaction.configure('property_db', config.get('zillow.mssql.property'))
     return app
 
 

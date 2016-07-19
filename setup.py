@@ -20,7 +20,8 @@ setup(name='neighborhood-hackweek',
           'PyYAML',
           'flask-transmute',
           'setuptools >=0.5',
-          'z-logging-formatters'
+          'z-logging-formatters',
+          'zillowdb'
       ],
       entry_points={
           'console_scripts': [
