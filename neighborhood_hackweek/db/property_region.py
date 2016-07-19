@@ -1,4 +1,5 @@
 from collections import namedtuple
+from flask import jsonify
 from logging import getLogger
 from zillowdb.session.manager import DBTransaction
 
