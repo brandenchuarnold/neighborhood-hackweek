@@ -1,6 +1,7 @@
 # neighborhood-hackweek
 
 A new flask service that maps home information by neighborhood for Hackweek 12
+Branden Chu Arnold
 
 # bootstrap
 
