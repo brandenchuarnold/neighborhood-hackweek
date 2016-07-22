@@ -73,27 +73,22 @@ SET @NOW                                    = GETDATE()
 
 SELECT
     orig.PropertyID,
-    orig.DataSourceTypeId,
-    orig.BestRecordFlag,
-    orig.RegionIdState,
-    orig.RegionIdCounty,
-    orig.RegionIdCity,
     orig.RegionIdNeighborhood,
-    orig.RegionIdZip,
-    orig.StreetId,
-    orig.RegionIdSchoolFragment,
-    orig.RegionIdSubdivision,
-    orig.RegionIdMasterCommunity,
-    orig.UpdateDate,
-    orig.LastUpdateBy,
-    orig.LastUpdateAccountId,
-    pu.ListPriceDollarCnt
+    pu.SellingPriceDollarCnt,
+	rz.ZestimateDollarCnt,
+	pt.TaxPaidAmt
 FROM #PropertyRegionToReturn tr
 JOIN dbo.PropertyRegion orig
     ON tr.PropertyID = orig.PropertyID
     AND tr.DataSourceTypeID = orig.DataSourceTypeID
 JOIN User_tes_600_comp_ads.dbo.PostingUnion pu
     ON tr.PostingID = pu.PostingID
+JOIN RentalZestimate_tes_600_comp_ads.dbo.RentalZestimateCurrent rz
+	ON tr.PropertyID = rz.PropertyID
+JOIN dbo.PropertyTax pt
+	ON tr.PropertyID = pt.PropertyID
+	AND tr.DataSourceTypeID = pt.DataSourceTypeID
+	AND pt.BestRecordFlag = 1
 
 GOTO ExitProc
 

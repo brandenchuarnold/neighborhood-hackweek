@@ -100,7 +100,7 @@ SELECT DISTINCT pr.PropertyID, pr.DataSourceTypeID, pu.PostingID
            ON pr.PropertyID = pu.PropertyID
            AND pu.PostingTypeID != 4
            AND pu.PostingSTatusTypeID = 1
-	   WHERE BestRecordFlag = 1
+	   WHERE pr.BestRecordFlag = 1
        AND RegionIDNeighborhood = @pRegionIDNeighborhood
 
 EXEC @RC = PropertyRegionLst_
