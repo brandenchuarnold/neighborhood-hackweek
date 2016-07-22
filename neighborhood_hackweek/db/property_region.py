@@ -21,7 +21,8 @@ class PropertyRegion(namedtuple('PropertyRegion',
                                  'region_id_master_community',
                                  'update_date',
                                  'last_update_by',
-                                 'last_update_account_id'])):
+                                 'last_update_account_id',
+                                 'selling_price_dollar_cnt'])):
 
     __slots__ = ()
 
@@ -40,7 +41,8 @@ class PropertyRegion(namedtuple('PropertyRegion',
             region_id_master_community,
             update_date,
             last_update_by,
-            last_update_account_id):
+            last_update_account_id,
+            selling_price_dollar_cnt):
         return super(PropertyRegion, cls).__new__(cls,
                                                   property_id,
                                                   data_source_type_id,
@@ -56,7 +58,8 @@ class PropertyRegion(namedtuple('PropertyRegion',
                                                   region_id_master_community,
                                                   update_date,
                                                   last_update_by,
-                                                  last_update_account_id)
+                                                  last_update_account_id,
+                                                  selling_price_dollar_cnt)
 
 def _create_property_region_from_sql(property_region):
     return PropertyRegion(
@@ -74,7 +77,8 @@ def _create_property_region_from_sql(property_region):
         region_id_master_community=int(property_region['RegionIDMasterCommunity']) if property_region['RegionIDMasterCommunity'] else None,
         update_date=property_region['UpdateDate'],
         last_update_by=property_region['LastUpdateBy'],
-        last_update_account_id=int(property_region['LastUpdateAccountID']) if property_region['LastUpdateAccountID'] else None)
+        last_update_account_id=int(property_region['LastUpdateAccountID']) if property_region['LastUpdateAccountID'] else None,
+        selling_price_dollar_cnt=int(property_region['SellingPriceDollarCnt']) if property_region['SellingPriceDollarCnt'] else None)
 
 
 @DBTransaction('property_db')

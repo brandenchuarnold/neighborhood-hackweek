@@ -86,11 +86,14 @@ SELECT
     orig.RegionIdMasterCommunity,
     orig.UpdateDate,
     orig.LastUpdateBy,
-    orig.LastUpdateAccountId
+    orig.LastUpdateAccountId,
+    pu.ListPriceDollarCnt
 FROM #PropertyRegionToReturn tr
-    JOIN dbo.PropertyRegion orig
-        ON tr.PropertyID = orig.PropertyID
-		   AND tr.DataSourceTypeID = orig.DataSourceTypeID
+JOIN dbo.PropertyRegion orig
+    ON tr.PropertyID = orig.PropertyID
+    AND tr.DataSourceTypeID = orig.DataSourceTypeID
+JOIN User_tes_600_comp_ads.dbo.PostingUnion pu
+    ON tr.PostingID = pu.PostingID
 
 GOTO ExitProc
 

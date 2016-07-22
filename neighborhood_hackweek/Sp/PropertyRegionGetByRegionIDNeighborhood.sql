@@ -85,23 +85,23 @@ IF @MsgParm1 IS NOT NULL
 CREATE TABLE #PropertyRegionToReturn
 (
     PropertyID                        INTEGER  PRIMARY KEY,
-	DataSourceTypeID                  INTEGER
+	DataSourceTypeID                  INTEGER,
+    PostingID                         INTEGER
 )
 
 ------------------------------------------------------------------------------
 -- Processing
 ------------------------------------------------------------------------------
 INSERT #PropertyRegionToReturn
-       (PropertyID, DataSourceTypeID)
-SELECT DISTINCT PropertyID, DataSourceTypeID
-       FROM dbo.PropertyRegion
+       (PropertyID, DataSourceTypeID, PostingID)
+SELECT DISTINCT pr.PropertyID, pr.DataSourceTypeID, pu.PostingID
+       FROM dbo.PropertyRegion pr
+       JOIN User_tes_600_comp_ads.dbo.PostingUnion pu
+           ON pr.PropertyID = pu.PropertyID
+           AND pu.PostingTypeID != 4
+           AND pu.PostingSTatusTypeID = 1
 	   WHERE BestRecordFlag = 1
        AND RegionIDNeighborhood = @pRegionIDNeighborhood
-       AND PropertyID IN (
-           SELECT PropertyID
-           FROM User_tes_600_comp_ads.dbo.PostingUnion
-           WHERE PostingTypeID != 4
-           AND PostingStatusTypeID = 1)
 
 EXEC @RC = PropertyRegionLst_
 
