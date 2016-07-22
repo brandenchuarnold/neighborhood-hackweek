@@ -51,7 +51,7 @@ neighborhood-hackweek-hosts:
         - brandena@zillowgroup.com
 
     environment: val_300
-    host: brandena1
+    host: tarac3.zillow.local
     port: 8000
     ping:
         - /monitor/ping
