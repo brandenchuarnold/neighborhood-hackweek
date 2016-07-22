@@ -11,7 +11,11 @@ class PropertyRegion(namedtuple('PropertyRegion',
                                  'region_id_neighborhood',
                                  'selling_price_dollar_cnt',
                                  'zestimate_dollar_cnt',
-                                 'tax_paid_amt'])):
+                                 'tax_paid_amt',
+                                 'bedrooms',
+                                 'bathrooms',
+                                 'latitude',
+                                 'longitude'])):
 
     __slots__ = ()
 
@@ -20,13 +24,21 @@ class PropertyRegion(namedtuple('PropertyRegion',
             region_id_neighborhood,
             selling_price_dollar_cnt,
             zestimate_dollar_cnt,
-            tax_paid_amt):
+            tax_paid_amt,
+            bedrooms,
+            bathrooms,
+            latitude,
+            longitude):
         return super(PropertyRegion, cls).__new__(cls,
                                                   property_id,
                                                   region_id_neighborhood,
                                                   selling_price_dollar_cnt,
                                                   zestimate_dollar_cnt,
-                                                  tax_paid_amt)
+                                                  tax_paid_amt,
+                                                  bedrooms,
+                                                  bathrooms,
+                                                  latitude,
+                                                  longitude)
 
 def _create_property_region_from_sql(property_region):
     return PropertyRegion(
@@ -34,7 +46,11 @@ def _create_property_region_from_sql(property_region):
         region_id_neighborhood=int(property_region['RegionIDNeighborhood']) if property_region['RegionIDNeighborhood'] else None,
         selling_price_dollar_cnt=int(property_region['SellingPriceDollarCnt']) if property_region['SellingPriceDollarCnt'] else None,
         zestimate_dollar_cnt=int(property_region['ZestimateDollarCnt']) if property_region['ZestimateDollarCnt'] else None,
-        tax_paid_amt=float(property_region['TaxPaidAmt']) if property_region['TaxPaidAmt'] else None
+        tax_paid_amt=float(property_region['TaxPaidAmt']) if property_region['TaxPaidAmt'] else None,
+        bedrooms=int(property_region['Bedrooms']) if property_region['Bedrooms'] else None,
+        bathrooms=int(property_region['Bathrooms']) if property_region['Bathrooms'] else None,
+        latitude=int(property_region['Latitude']) if property_region['Latitude'] else None,
+        longitude=int(property_region['Longitude']) if property_region['Longitude'] else None
     )
 
 

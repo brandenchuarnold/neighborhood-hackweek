@@ -76,7 +76,11 @@ SELECT
     orig.RegionIdNeighborhood,
     pu.SellingPriceDollarCnt,
 	rz.ZestimateDollarCnt,
-	pt.TaxPaidAmt
+	pt.TaxPaidAmt,
+	pa.Bedrooms,
+	pa.Bathrooms,
+	pll.Latitude,
+	pll.Longitude
 FROM #PropertyRegionToReturn tr
 JOIN dbo.PropertyRegion orig
     ON tr.PropertyID = orig.PropertyID
@@ -89,6 +93,14 @@ JOIN dbo.PropertyTax pt
 	ON tr.PropertyID = pt.PropertyID
 	AND tr.DataSourceTypeID = pt.DataSourceTypeID
 	AND pt.BestRecordFlag = 1
+JOIN dbo.PropertyAttribute pa
+	ON tr.PropertyID = pa.PropertyID
+	AND tr.DataSourceTypeID = pa.DataSourceTypeID
+	AND pa.BestRecordFlag = 1
+JOIN dbo.PropertyLatLong pll
+	ON tr.PropertyID = pll.PropertyID
+	AND tr.DataSourceTypeID = pll.DataSourceTypeID
+	AND pll.BestRecordFlag = 1
 
 GOTO ExitProc
 
