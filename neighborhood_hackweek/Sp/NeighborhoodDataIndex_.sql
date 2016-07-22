@@ -71,7 +71,6 @@ SET @ERR_UPDATE                             = 200310
 
 -- Procedure-specific constants and variables
 SET @NOW                                    = GETDATE()
-SELECT @N									= COUNT(*) FROM #NeighborhoodDataToIndex
 
 INSERT INTO [RegionData]
 SELECT
@@ -90,12 +89,12 @@ SELECT
     AVG(HouseholdSizeCnt) AS MeanHouseHoldSize,
     AVG(BedroomCntMin) AS MeanMinBed,
     AVG(BedroomCntMax) AS MeanMaxBed,
-    SUM(CASE WHEN CreditScoreTypeID >= 3 THEN 1 ELSE 0 END) / @N AS PercentCreditScoreOver700,
-    SUM(CASE WHEN HousingTypeCurrentName = 'own' THEN 1 ELSE 0 END) / @N AS PercentOwnCurrentHome,
-    SUM(CASE WHEN MoveInPeriodTypeName = 'I''m flexible' THEN 1 ELSE 0 END) / @N AS PercentFlexibleMoveInDate,
-    SUM(CASE WHEN LeaseDurationTypeName = 'long (12+ months)' THEN 1 ELSE 0 END) / @N AS PercentLongTermLease,
-    SUM(CASE WHEN BedroomCntMin > 1 THEN 1 ELSE 0 END) / @N AS PercentMoreThanOneBed,
-    SUM(CASE WHEN ParkingNeedTypeName = 'yes' THEN 1 ELSE 0 END) / @N AS PercentNeedParking
+    SUM(CASE WHEN CreditScoreTypeID >= 3 THEN 1.0 ELSE 0.0 END) / (SELECT COUNT(CreditScoreTypeID) FROM #NeighborhoodDataToIndex) AS PercentCreditScoreOver700,
+    SUM(CASE WHEN HousingTypeCurrentName = 'own' THEN 1.0 ELSE 0.0 END) / (SELECT COUNT(HousingTypeCurrentName) FROM #NeighborhoodDataToIndex) AS PercentOwnCurrentHome,
+    SUM(CASE WHEN MoveInPeriodTypeName = 'I''m flexible' THEN 1.0 ELSE 0.0 END) / (SELECT COUNT(MoveInPeriodTypeName) FROM #NeighborhoodDataToIndex) AS PercentFlexibleMoveInDate,
+    SUM(CASE WHEN LeaseDurationTypeName = 'long (12+ months)' THEN 1.0 ELSE 0.0 END) / (SELECT COUNT(LeaseDurationTypeName) FROM #NeighborhoodDataToIndex) AS PercentLongTermLease,
+    SUM(CASE WHEN BedroomCntMin > 1 THEN 1.0 ELSE 0.0 END) / (SELECT COUNT(BedroomCntMin) FROM #NeighborhoodDataToIndex) AS PercentMoreThanOneBed,
+    SUM(CASE WHEN ParkingNeedTypeName = 'yes' THEN 1.0 ELSE 0.0 END) / (SELECT COUNT(ParkingNeedTypeName) FROM #NeighborhoodDataToIndex) AS PercentNeedParking
 FROM #NeighborhoodDataToIndex
 
 GOTO ExitProc

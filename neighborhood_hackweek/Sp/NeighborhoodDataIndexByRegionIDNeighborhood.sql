@@ -86,19 +86,19 @@ CREATE TABLE #NeighborhoodDataToIndex
     AccountID				integer not null,
 	PostalCodeFrom			varchar(10) null,
 	HousingSinceDate		date null,
-	HousingTypeCurrentName		varchar(60) null,
+	HousingTypeCurrentName	varchar(60) null,
 	EmployedSinceDate		date null,
 	CreditScoreTypeID		tinyint null,
 	MonthlyIncomeAmt		int null,
-	HousingTypeDesiredName		varchar(60) null,
-	MoveInPeriodTypeName		varchar(60) null,
-	LeaseDurationTypeName		varchar(60) null,
+	HousingTypeDesiredName	varchar(60) null,
+	MoveInPeriodTypeName	varchar(60) null,
+	LeaseDurationTypeName	varchar(60) null,
 	HouseholdSizeCnt		tinyint null,
 	BedroomCntMin			tinyint null,
 	BedroomCntMax			tinyint null,
 	ParkingNeedTypeName		varchar(60) null,
-	CreateDate			datetime2(0) null,
-	RegionID			integer not null
+	CreateDate				datetime2(0) null,
+	RegionID				integer not null
 )
 ------------------------------------------------------------------------------
 -- Processing
