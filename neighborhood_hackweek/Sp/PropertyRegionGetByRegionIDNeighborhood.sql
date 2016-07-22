@@ -93,10 +93,15 @@ CREATE TABLE #PropertyRegionToReturn
 ------------------------------------------------------------------------------
 INSERT #PropertyRegionToReturn
        (PropertyID, DataSourceTypeID)
-SELECT PropertyID, DataSourceTypeID
+SELECT DISTINCT PropertyID, DataSourceTypeID
        FROM dbo.PropertyRegion
 	   WHERE BestRecordFlag = 1
        AND RegionIDNeighborhood = @pRegionIDNeighborhood
+       AND PropertyID IN (
+           SELECT PropertyID
+           FROM User_tes_600_comp_ads.dbo.PostingUnion
+           WHERE PostingTypeID != 4
+           AND PostingStatusTypeID = 1)
 
 EXEC @RC = PropertyRegionLst_
 
