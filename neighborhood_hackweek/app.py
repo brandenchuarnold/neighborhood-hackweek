@@ -17,6 +17,7 @@ def create_app(config_fn):
     config = load_config(config_fn)
     app.config.update(config)
     DBTransaction.configure('property_db', config.get('zillow.mssql.property'))
+    DBTransaction.configure('user_db', config.get('zillow.mssql.user'))
     return app
 
 

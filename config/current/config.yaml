@@ -1,0 +1,11 @@
+
+# Note: val.environment is use as an example. Use your own service namespace.
+# https://zwiki.zillowgroup.net/display/~brente/Configuration+Template+Guide#ConfigurationTemplateGuide-Definitions
+
+ZillowWebHostName: www.develop.zillow.net
+ZillowWebPort: 80
+SecureZillowWebPort: 443
+
+# SQL
+zillow.mssql.property: mssql+pymssql://zillow3:zillow3@wfc-t60-sql-001.zillow.local:1433/ZillowProperty_tes_600_comp_ads?charset=utf8&timeout=10
+zillow.mssql.user: mssql+pymssql://zillow3:zillow3@wfc-t60-sql-001.zillow.local:1433/User_tes_600_comp_ads?charset=utf8&timeout=10

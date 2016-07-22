@@ -22,7 +22,6 @@ parts
 # Zillow specialize #
 #####################
 cache
-config/current
 history.cfg
 conf.cfg
 
