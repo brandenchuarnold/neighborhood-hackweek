@@ -22,3 +22,4 @@ SecureZillowWebPort: {{ val.web_ssl_config.SSLPort }}
 {%- endmacro -%} 
 
 zillow.mssql.property: {{ db_uri(val.db_zillow_property) }}
+zillow.mssql.user: {{ db_uri(val.db_userdb) }}
