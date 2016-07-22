@@ -8,7 +8,7 @@ neighborhood-hackweek:
     contact:
         - brandena@zillowgroup.com
 
-    environment: val_300
+    environment: tes_600
     # Host to be monitored.  this will be specialized automatically during
     # "dt configure ..."
     host: INSERT_VIP_HERE
@@ -38,8 +38,8 @@ neighborhood-hackweek:
             max_error_count: 2
           regexes:
             rsp: [ '500' ]
-            app: [ 'val_300.access-a.neighborhood-hackweek' ]
-          routing_prefixes: [ 'val_300.access-a.neighborhood-hackweek' ]
+            app: [ 'tes_600.access-a.neighborhood-hackweek' ]
+          routing_prefixes: [ 'tes_600.access-a.neighborhood-hackweek' ]
 
 # this Zon feature covers every host individually.
 # As well as knowing if your service is completely down
@@ -50,7 +50,7 @@ neighborhood-hackweek-hosts:
     contact:
         - brandena@zillowgroup.com
 
-    environment: val_300
+    environment: tes_600
     host: tarac3.zillow.local
     port: 8000
     ping:

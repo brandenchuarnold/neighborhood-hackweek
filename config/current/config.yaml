@@ -2,7 +2,7 @@
 # Note: val.environment is use as an example. Use your own service namespace.
 # https://zwiki.zillowgroup.net/display/~brente/Configuration+Template+Guide#ConfigurationTemplateGuide-Definitions
 
-ZillowWebHostName: www.develop.zillow.net
+ZillowWebHostName: www.tes600.zillow.net
 ZillowWebPort: 80
 SecureZillowWebPort: 443
 

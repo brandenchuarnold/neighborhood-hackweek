@@ -1,4 +1,4 @@
-APACHE_LIB_ENV=val300
+APACHE_LIB_ENV=tes600
 # populate this value with the cname/vip, when you have one
 # e.g. announce.in.zillow.net
 APACHE_LIB_SERVERNAME=
