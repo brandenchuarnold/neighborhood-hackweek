@@ -73,8 +73,7 @@ SET @ERR_UPDATE                             = 200310
 SET @NOW                                    = GETDATE()
 
 INSERT INTO [RegionData]
-SELECT
-	MIN(RegionID),
+SELECT RegionID,
     (
         (SELECT MAX(MonthlyIncomeAmt) FROM
             (SELECT TOP 50 PERCENT MonthlyIncomeAmt
@@ -96,6 +95,7 @@ SELECT
     SUM(CASE WHEN BedroomCntMin > 1 THEN 1.0 ELSE 0.0 END) / (SELECT COUNT(BedroomCntMin) FROM #NeighborhoodDataToIndex) AS PercentMoreThanOneBed,
     SUM(CASE WHEN ParkingNeedTypeName = 'yes' THEN 1.0 ELSE 0.0 END) / (SELECT COUNT(ParkingNeedTypeName) FROM #NeighborhoodDataToIndex) AS PercentNeedParking
 FROM #NeighborhoodDataToIndex
+GROUP BY RegionID
 
 GOTO ExitProc
 
