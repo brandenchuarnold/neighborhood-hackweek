@@ -22,7 +22,8 @@ BEGIN
         PercentLongTermLease              DECIMAL(5, 4) NULL,
         PercentMoreThanOneBed             DECIMAL(5, 4) NULL,
         PercentNeedParking                DECIMAL(5, 4) NULL,
-        NumContactsPerRental              DECIMAL(16, 2) NULL
+        NumContactsPerRental              DECIMAL(16, 2) NULL,
+        Zindex                            FLOAT NULL,
     )
 END
 GO

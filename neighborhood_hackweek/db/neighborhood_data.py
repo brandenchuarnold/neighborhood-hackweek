@@ -18,7 +18,8 @@ class NeighborhoodData(namedtuple('NeighborhoodData',
                                    'percent_long_term_lease',
                                    'percent_more_than_one_bed',
                                    'percent_need_parking',
-                                   'num_contacts_per_rental'])):
+                                   'num_contacts_per_rental',
+                                   'zindex'])):
 
     __slots__ = ()
 
@@ -34,7 +35,8 @@ class NeighborhoodData(namedtuple('NeighborhoodData',
             percent_long_term_lease,
             percent_more_than_one_bed,
             percent_need_parking,
-            num_contacts_per_rental):
+            num_contacts_per_rental,
+            zindex):
         return super(NeighborhoodData, cls).__new__(cls,
                                                     region_id,
                                                     median_monthly_income,
@@ -47,7 +49,8 @@ class NeighborhoodData(namedtuple('NeighborhoodData',
                                                     percent_long_term_lease,
                                                     percent_more_than_one_bed,
                                                     percent_need_parking,
-                                                    num_contacts_per_rental)
+                                                    num_contacts_per_rental,
+                                                    zindex)
 
 def _create_neighborhood_data_from_sql(neighborhood_data):
     return NeighborhoodData(
@@ -74,7 +77,9 @@ def _create_neighborhood_data_from_sql(neighborhood_data):
         percent_need_parking=
             float(neighborhood_data['PercentNeedParking']),
         num_contacts_per_rental=
-            float(neighborhood_data['NumContactsPerRental'])
+            float(neighborhood_data['NumContactsPerRental']),
+        zindex=
+            float(neighborhood_data['Zindex'])
    ) 
 @DBTransaction('user_db')
 def get_neighborhood_data_by_region_id_neighborhood(region_id_neighborhood,

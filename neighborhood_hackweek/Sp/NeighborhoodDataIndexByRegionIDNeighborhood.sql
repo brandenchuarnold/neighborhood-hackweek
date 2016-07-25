@@ -11,6 +11,7 @@ ALTER PROCEDURE dbo.NeighborhoodDataIndexByRegionIDNeighborhood
 (
     @pRegionIDNeighborhood        int
 )
+AS
 
 /*-----------------------------------------------------------------------------
 Description
@@ -107,6 +108,10 @@ CREATE TABLE #RentalPropertyAll
 (
 	PropertyID		integer primary key not null
 )
+CREATE TABLE #Zindex
+(
+	CurrentDataValue		float null
+)
 ------------------------------------------------------------------------------
 -- Processing
 ------------------------------------------------------------------------------
@@ -184,6 +189,19 @@ INSERT INTO #RentalPropertyAll
     AND PT.UseCodeTypeIDStandard in (2, 9, 82)  -- SF, condo/PUD, townhouse
 	WHERE Properties.RegionIDCounty = 207
 	AND Properties.RegionIDNeighborhood = @pRegionIDNeighborhood
+
+INSERT INTO #Zindex
+	SELECT M.CurrentDataValue
+	FROM [LocalMarket_tes_600_comp_ads].[dbo].[MetricDataCurrentSeries_20160419172200] AS M
+	JOIN [Region_tes_600_comp_ads].[dbo].[Region] AS R
+	ON M.RegionID = R.RegionID
+	JOIN [Region_tes_600_comp_ads].[dbo].[RegionType] AS RT
+	ON R.RegionTypeID = RT.RegionTypeID
+	AND RT.RegionTypeDesc = 'neighborhood'
+	WHERE M.MetricTypeID = 34 --Zindex
+	AND M.RegionID = @pRegionIDNeighborhood
+	AND M.DataTypeID = 1
+	AND M.DateKeyReportPeriodCurrent = 16892 -- 3/31/16 (current)
 
 EXEC @RC = NeighborhoodDataIndex_
 
