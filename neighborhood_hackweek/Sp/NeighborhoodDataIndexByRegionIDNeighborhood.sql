@@ -11,7 +11,6 @@ ALTER PROCEDURE dbo.NeighborhoodDataIndexByRegionIDNeighborhood
 (
     @pRegionIDNeighborhood        int
 )
-AS
 
 /*-----------------------------------------------------------------------------
 Description
@@ -100,6 +99,14 @@ CREATE TABLE #NeighborhoodDataToIndex
 	CreateDate				datetime2(0) null,
 	RegionID				integer not null
 )
+CREATE TABLE #RentalPropertyContacted
+(
+	PropertyID		integer null
+)
+CREATE TABLE #RentalPropertyAll
+(
+	PropertyID		integer primary key not null
+)
 ------------------------------------------------------------------------------
 -- Processing
 ------------------------------------------------------------------------------
@@ -123,10 +130,14 @@ SELECT rres.AccountID,
 	  FROM [AccountRenterResume] AS rres
 	  JOIN [AccountRenterResumeRegion] AS rreg
 	  ON rres.AccountID = rreg.AccountID
+      AND rreg.StatusTypeID = 1
 	  LEFT JOIN [AccountRenterResumeHousingTypeDesired] AS rhousewantID
 	  ON rres.AccountID = rhousewantID.AccountID
+      AND rres.StatusTypeID = 1
+      AND rres.LastUpdateBy = 'renter-resume-service'
 	  LEFT JOIN [HousingTypeDesired] AS rhousewant
 	  ON rhousewantID.HousingTypeDesiredID = rhousewant.HousingTypeDesiredID
+      AND rhousewant.HousingTypeDesiredName != 'apartment'
 	  LEFT JOIN [HousingTypeCurrent] AS rhousecurr
 	  ON rres.HousingTypeCurrentID = rhousecurr.HousingTypeCurrentID
 	  LEFT JOIN [MoveInPeriodType] AS movein
@@ -136,10 +147,43 @@ SELECT rres.AccountID,
 	  LEFT JOIN [ParkingNeedType] AS park
 	  ON rres.ParkingNeedTypeID = park.ParkingNeedTypeID
 	  WHERE rreg.RegionID = @pRegionIDNeighborhood
-	  AND rreg.StatusTypeID = 1
-	  AND rres.StatusTypeID = 1
-	  AND rres.LastUpdateBy = 'renter-resume-service'
-	  AND rhousewant.HousingTypeDesiredName != 'apartment'
+
+INSERT INTO #RentalPropertyContacted
+    SELECT LC.PropertyID
+    FROM [Ads_tes_600_comp_ads].[dbo].[ListingContact] AS LC
+    JOIN
+    (
+        SELECT PropertyID, RegionIDNeighborhood, RegionIDCounty
+        FROM [ZillowProperty_tes_600_comp_ads].[dbo].[PropertyRegion]
+        UNION ALL
+        SELECT PropertyID, RegionIDNeighborhood, RegionIDCounty
+        FROM [User_tes_600_comp_ads].[dbo].[propertyRegion_zp]
+    ) AS PR
+    ON LC.PropertyID = PR.PropertyID
+    AND PR.RegionIDCounty = 207 -- King County
+	AND PR.RegionIDNeighborhood = @pRegionIDNeighborhood
+    JOIN [ZillowProperty_tes_600_comp_ads].[dbo].[PropertyType] AS PT
+    ON LC.PropertyID = PT.PropertyID
+    AND PT.UseCodeTypeIDStandard in (2, 9, 82)  -- SF, condo/PUD, townhouse;")
+    WHERE LC.PropertyContactMode = 4  -- Rentals only
+    AND LC.LeadFormSubmissionResult = 1  -- Only emails that were sent successfully, non dupes
+    AND LC.CreateDate >= '2015-07-26'
+
+INSERT INTO #RentalPropertyAll
+    SELECT DISTINCT Properties.PropertyID
+    FROM
+    (
+        SELECT PropertyID, RegionIDNeighborhood, RegionIDCounty
+        FROM [ZillowProperty_tes_600_comp_ads].[dbo].[PropertyRegion]
+        UNION ALL
+        SELECT PropertyID, RegionIDNeighborhood, RegionIDCounty
+        FROM [User_tes_600_comp_ads].[dbo].[propertyRegion_zp]
+    ) AS Properties
+    JOIN [ZillowProperty_tes_600_comp_ads].[dbo].[PropertyType] AS PT
+    ON Properties.PropertyID = PT.PropertyID
+    AND PT.UseCodeTypeIDStandard in (2, 9, 82)  -- SF, condo/PUD, townhouse
+	WHERE Properties.RegionIDCounty = 207
+	AND Properties.RegionIDNeighborhood = @pRegionIDNeighborhood
 
 EXEC @RC = NeighborhoodDataIndex_
 

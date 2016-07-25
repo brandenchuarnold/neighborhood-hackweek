@@ -17,7 +17,8 @@ class NeighborhoodData(namedtuple('NeighborhoodData',
                                    'percent_flexible_move_in_date',
                                    'percent_long_term_lease',
                                    'percent_more_than_one_bed',
-                                   'percent_need_parking'])):
+                                   'percent_need_parking',
+                                   'num_contacts_per_rental'])):
 
     __slots__ = ()
 
@@ -32,7 +33,8 @@ class NeighborhoodData(namedtuple('NeighborhoodData',
             percent_flexible_move_in_date,
             percent_long_term_lease,
             percent_more_than_one_bed,
-            percent_need_parking):
+            percent_need_parking,
+            num_contacts_per_rental):
         return super(NeighborhoodData, cls).__new__(cls,
                                                     region_id,
                                                     median_monthly_income,
@@ -44,7 +46,8 @@ class NeighborhoodData(namedtuple('NeighborhoodData',
                                                     percent_flexible_move_in_date,
                                                     percent_long_term_lease,
                                                     percent_more_than_one_bed,
-                                                    percent_need_parking)
+                                                    percent_need_parking,
+                                                    num_contacts_per_rental)
 
 def _create_neighborhood_data_from_sql(neighborhood_data):
     return NeighborhoodData(
@@ -69,7 +72,9 @@ def _create_neighborhood_data_from_sql(neighborhood_data):
         percent_more_than_one_bed=
             float(neighborhood_data['PercentMoreThanOneBed']),
         percent_need_parking=
-            float(neighborhood_data['PercentNeedParking'])
+            float(neighborhood_data['PercentNeedParking']),
+        num_contacts_per_rental=
+            float(neighborhood_data['NumContactsPerRental'])
    ) 
 @DBTransaction('user_db')
 def get_neighborhood_data_by_region_id_neighborhood(region_id_neighborhood,

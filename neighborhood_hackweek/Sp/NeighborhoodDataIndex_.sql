@@ -93,7 +93,8 @@ SELECT RegionID,
     SUM(CASE WHEN MoveInPeriodTypeName = 'I''m flexible' THEN 1.0 ELSE 0.0 END) / (SELECT COUNT(MoveInPeriodTypeName) FROM #NeighborhoodDataToIndex) AS PercentFlexibleMoveInDate,
     SUM(CASE WHEN LeaseDurationTypeName = 'long (12+ months)' THEN 1.0 ELSE 0.0 END) / (SELECT COUNT(LeaseDurationTypeName) FROM #NeighborhoodDataToIndex) AS PercentLongTermLease,
     SUM(CASE WHEN BedroomCntMin > 1 THEN 1.0 ELSE 0.0 END) / (SELECT COUNT(BedroomCntMin) FROM #NeighborhoodDataToIndex) AS PercentMoreThanOneBed,
-    SUM(CASE WHEN ParkingNeedTypeName = 'yes' THEN 1.0 ELSE 0.0 END) / (SELECT COUNT(ParkingNeedTypeName) FROM #NeighborhoodDataToIndex) AS PercentNeedParking
+    SUM(CASE WHEN ParkingNeedTypeName = 'yes' THEN 1.0 ELSE 0.0 END) / (SELECT COUNT(ParkingNeedTypeName) FROM #NeighborhoodDataToIndex) AS PercentNeedParking,
+    CAST((SELECT COUNT(*) FROM #RentalPropertyContacted) AS DECIMAL(16, 4)) / (SELECT COUNT(*) FROM #RentalPropertyAll) AS NumContactsPerRental
 FROM #NeighborhoodDataToIndex
 GROUP BY RegionID
 
