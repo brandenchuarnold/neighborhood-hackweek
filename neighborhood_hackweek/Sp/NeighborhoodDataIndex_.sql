@@ -78,12 +78,14 @@ SELECT RegionID,
         (SELECT MAX(MonthlyIncomeAmt) FROM
             (SELECT TOP 50 PERCENT MonthlyIncomeAmt
 			 FROM #NeighborhoodDataToIndex
-			 ORDER BY CASE WHEN MonthlyIncomeAmt IS NULL THEN 1 ELSE 0 END, MonthlyIncomeAmt) AS BottomHalf)
+             WHERE MonthlyIncomeAmt IS NOT NULL
+			 ORDER BY MonthlyIncomeAmt) AS BottomHalf)
         +
         (SELECT MIN(MonthlyIncomeAmt) FROM
             (SELECT TOP 50 PERCENT MonthlyIncomeAmt
 			 FROM #NeighborhoodDataToIndex
-			 ORDER BY CASE WHEN MonthlyIncomeAmt IS NULL THEN 1 ELSE 0 END, MonthlyIncomeAmt DESC) AS TopHalf)
+             WHERE MonthlyIncomeAmt IS NOT NULL
+			 ORDER BY MonthlyIncomeAmt DESC) AS TopHalf)
 	/ 2) AS MedianMonthlyIncome,
     AVG(HouseholdSizeCnt) AS MeanHouseHoldSize,
     AVG(BedroomCntMin) AS MeanMinBed,
