@@ -1,4 +1,3 @@
-
 IF OBJECT_ID('dbo.pkRegionData') IS NOT NULL
 BEGIN
     PRINT 'Dropping constraint pkRegionData';
