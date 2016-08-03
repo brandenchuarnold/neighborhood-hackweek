@@ -14,7 +14,7 @@ target/
 # Buildout #
 ############
 .installed.cfg
-bin
+# bin -- current state can run locally
 develop-eggs
 eggs
 parts
