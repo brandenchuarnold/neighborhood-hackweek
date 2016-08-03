@@ -1,7 +1,12 @@
 from flask import Blueprint, jsonify
 import httplib
 
-from neighborhood_hackweek.db.property_region import (
+# Using SQL calls
+# from neighborhood_hackweek.db.property_region import (
+#     get_property_regions_by_region_id_neighborhood as get_property_regions
+# )
+# Using .json files
+from neighborhood_hackweek.local.property_region import (
     get_property_regions_by_region_id_neighborhood as get_property_regions
 )
 

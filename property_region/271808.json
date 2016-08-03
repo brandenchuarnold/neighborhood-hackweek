@@ -1,0 +1,257 @@
+{
+  "property_regions": [
+    {
+      "bathrooms": 1, 
+      "bedrooms": 1, 
+      "latitude": 47614990, 
+      "longitude": -122347755, 
+      "property_id": 48684627, 
+      "region_id_neighborhood": 271808, 
+      "selling_price_dollar_cnt": 341850, 
+      "tax_paid_amt": 2111.32, 
+      "zestimate_dollar_cnt": 1695
+    }, 
+    {
+      "bathrooms": 1, 
+      "bedrooms": null, 
+      "latitude": 47615049, 
+      "longitude": -122352737, 
+      "property_id": 61718926, 
+      "region_id_neighborhood": 271808, 
+      "selling_price_dollar_cnt": 266000, 
+      "tax_paid_amt": 2226.22, 
+      "zestimate_dollar_cnt": 1524
+    }, 
+    {
+      "bathrooms": 2, 
+      "bedrooms": 2, 
+      "latitude": 47612236, 
+      "longitude": -122345191, 
+      "property_id": 108813237, 
+      "region_id_neighborhood": 271808, 
+      "selling_price_dollar_cnt": 835000, 
+      "tax_paid_amt": 5458.12, 
+      "zestimate_dollar_cnt": 3200
+    }, 
+    {
+      "bathrooms": 2, 
+      "bedrooms": 2, 
+      "latitude": 47615049, 
+      "longitude": -122352737, 
+      "property_id": 61718895, 
+      "region_id_neighborhood": 271808, 
+      "selling_price_dollar_cnt": 687000, 
+      "tax_paid_amt": 5620.62, 
+      "zestimate_dollar_cnt": 3500
+    }, 
+    {
+      "bathrooms": 2, 
+      "bedrooms": 2, 
+      "latitude": 47617074, 
+      "longitude": -122351443, 
+      "property_id": 48677919, 
+      "region_id_neighborhood": 271808, 
+      "selling_price_dollar_cnt": 714950, 
+      "tax_paid_amt": 5853.23, 
+      "zestimate_dollar_cnt": 3250
+    }, 
+    {
+      "bathrooms": 2, 
+      "bedrooms": 2, 
+      "latitude": 47617074, 
+      "longitude": -122351443, 
+      "property_id": 48677929, 
+      "region_id_neighborhood": 271808, 
+      "selling_price_dollar_cnt": 675000, 
+      "tax_paid_amt": 6187.11, 
+      "zestimate_dollar_cnt": 3295
+    }, 
+    {
+      "bathrooms": 1, 
+      "bedrooms": null, 
+      "latitude": 47614698, 
+      "longitude": -122350055, 
+      "property_id": 48790065, 
+      "region_id_neighborhood": 271808, 
+      "selling_price_dollar_cnt": 415000, 
+      "tax_paid_amt": 3160.33, 
+      "zestimate_dollar_cnt": 2199
+    }, 
+    {
+      "bathrooms": 1, 
+      "bedrooms": 1, 
+      "latitude": 47618333, 
+      "longitude": -122353603, 
+      "property_id": 68480264, 
+      "region_id_neighborhood": 271808, 
+      "selling_price_dollar_cnt": 369000, 
+      "tax_paid_amt": 2535.83, 
+      "zestimate_dollar_cnt": 2195
+    }, 
+    {
+      "bathrooms": 1, 
+      "bedrooms": 1, 
+      "latitude": 47618333, 
+      "longitude": -122353603, 
+      "property_id": 68480296, 
+      "region_id_neighborhood": 271808, 
+      "selling_price_dollar_cnt": 349950, 
+      "tax_paid_amt": 2155.58, 
+      "zestimate_dollar_cnt": 1600
+    }, 
+    {
+      "bathrooms": 1, 
+      "bedrooms": 1, 
+      "latitude": 47612237, 
+      "longitude": -122345190, 
+      "property_id": 48754298, 
+      "region_id_neighborhood": 271808, 
+      "selling_price_dollar_cnt": 559000, 
+      "tax_paid_amt": 3529.06, 
+      "zestimate_dollar_cnt": 2299
+    }, 
+    {
+      "bathrooms": 1, 
+      "bedrooms": 1, 
+      "latitude": 47613899, 
+      "longitude": -122344042, 
+      "property_id": 48831324, 
+      "region_id_neighborhood": 271808, 
+      "selling_price_dollar_cnt": 350000, 
+      "tax_paid_amt": 2315.35, 
+      "zestimate_dollar_cnt": 1750
+    }, 
+    {
+      "bathrooms": 1, 
+      "bedrooms": null, 
+      "latitude": 47617549, 
+      "longitude": -122346248, 
+      "property_id": 52933485, 
+      "region_id_neighborhood": 271808, 
+      "selling_price_dollar_cnt": 249950, 
+      "tax_paid_amt": 1497.49, 
+      "zestimate_dollar_cnt": 1895
+    }, 
+    {
+      "bathrooms": 1, 
+      "bedrooms": 1, 
+      "latitude": 47617224, 
+      "longitude": -122353620, 
+      "property_id": 58382247, 
+      "region_id_neighborhood": 271808, 
+      "selling_price_dollar_cnt": 485000, 
+      "tax_paid_amt": 3651.67, 
+      "zestimate_dollar_cnt": 2400
+    }, 
+    {
+      "bathrooms": 1, 
+      "bedrooms": 1, 
+      "latitude": 47614671, 
+      "longitude": -122351255, 
+      "property_id": 60082665, 
+      "region_id_neighborhood": 271808, 
+      "selling_price_dollar_cnt": 440000, 
+      "tax_paid_amt": 3692.11, 
+      "zestimate_dollar_cnt": 2795
+    }, 
+    {
+      "bathrooms": 1, 
+      "bedrooms": 1, 
+      "latitude": 47614671, 
+      "longitude": -122351255, 
+      "property_id": 60973452, 
+      "region_id_neighborhood": 271808, 
+      "selling_price_dollar_cnt": 625000, 
+      "tax_paid_amt": 3766.3, 
+      "zestimate_dollar_cnt": 2700
+    }, 
+    {
+      "bathrooms": 2, 
+      "bedrooms": 2, 
+      "latitude": 47615223, 
+      "longitude": -122352188, 
+      "property_id": 65227522, 
+      "region_id_neighborhood": 271808, 
+      "selling_price_dollar_cnt": 1650000, 
+      "tax_paid_amt": 12430.56, 
+      "zestimate_dollar_cnt": 3700
+    }, 
+    {
+      "bathrooms": 1, 
+      "bedrooms": 1, 
+      "latitude": 47615604, 
+      "longitude": -122351699, 
+      "property_id": 81777022, 
+      "region_id_neighborhood": 271808, 
+      "selling_price_dollar_cnt": 315000, 
+      "tax_paid_amt": 2216.35, 
+      "zestimate_dollar_cnt": 1745
+    }, 
+    {
+      "bathrooms": 1, 
+      "bedrooms": 1, 
+      "latitude": 47612987, 
+      "longitude": -122339302, 
+      "property_id": 92568899, 
+      "region_id_neighborhood": 271808, 
+      "selling_price_dollar_cnt": 680000, 
+      "tax_paid_amt": 4891.09, 
+      "zestimate_dollar_cnt": 2700
+    }, 
+    {
+      "bathrooms": 2, 
+      "bedrooms": 2, 
+      "latitude": 47612987, 
+      "longitude": -122339302, 
+      "property_id": 92570438, 
+      "region_id_neighborhood": 271808, 
+      "selling_price_dollar_cnt": 1085000, 
+      "tax_paid_amt": 8814.13, 
+      "zestimate_dollar_cnt": 4531
+    }, 
+    {
+      "bathrooms": 1, 
+      "bedrooms": 1, 
+      "latitude": 47612987, 
+      "longitude": -122339302, 
+      "property_id": 92570519, 
+      "region_id_neighborhood": 271808, 
+      "selling_price_dollar_cnt": 1298000, 
+      "tax_paid_amt": 9704.47, 
+      "zestimate_dollar_cnt": 5948
+    }, 
+    {
+      "bathrooms": 2, 
+      "bedrooms": 2, 
+      "latitude": 47616395, 
+      "longitude": -122349026, 
+      "property_id": 49050137, 
+      "region_id_neighborhood": 271808, 
+      "selling_price_dollar_cnt": 1349950, 
+      "tax_paid_amt": 6578.18, 
+      "zestimate_dollar_cnt": 3500
+    }, 
+    {
+      "bathrooms": 1, 
+      "bedrooms": 1, 
+      "latitude": 47617827, 
+      "longitude": -122355460, 
+      "property_id": 48655042, 
+      "region_id_neighborhood": 271808, 
+      "selling_price_dollar_cnt": 389000, 
+      "tax_paid_amt": 2915.32, 
+      "zestimate_dollar_cnt": 2199
+    }, 
+    {
+      "bathrooms": 1, 
+      "bedrooms": 1, 
+      "latitude": 47615433, 
+      "longitude": -122348619, 
+      "property_id": 48662263, 
+      "region_id_neighborhood": 271808, 
+      "selling_price_dollar_cnt": 384900, 
+      "tax_paid_amt": 2789.71, 
+      "zestimate_dollar_cnt": 2195
+    }
+  ]
+}

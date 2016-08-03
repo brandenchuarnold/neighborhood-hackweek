@@ -1,0 +1,48 @@
+{
+  "property_regions": [
+    {
+      "bathrooms": 2, 
+      "bedrooms": 3, 
+      "latitude": 47670549, 
+      "longitude": -122319784, 
+      "property_id": 48768830, 
+      "region_id_neighborhood": 272001, 
+      "selling_price_dollar_cnt": 600000, 
+      "tax_paid_amt": 4165.91, 
+      "zestimate_dollar_cnt": 2850
+    }, 
+    {
+      "bathrooms": 1, 
+      "bedrooms": 1, 
+      "latitude": 47662693, 
+      "longitude": -122319046, 
+      "property_id": 49104184, 
+      "region_id_neighborhood": 272001, 
+      "selling_price_dollar_cnt": 299950, 
+      "tax_paid_amt": 2244.61, 
+      "zestimate_dollar_cnt": 1895
+    }, 
+    {
+      "bathrooms": null, 
+      "bedrooms": null, 
+      "latitude": 47659402, 
+      "longitude": -122314686, 
+      "property_id": 49107816, 
+      "region_id_neighborhood": 272001, 
+      "selling_price_dollar_cnt": 335000, 
+      "tax_paid_amt": 88.62, 
+      "zestimate_dollar_cnt": 2050
+    }, 
+    {
+      "bathrooms": 1, 
+      "bedrooms": 1, 
+      "latitude": 47659247, 
+      "longitude": -122318495, 
+      "property_id": 82362315, 
+      "region_id_neighborhood": 272001, 
+      "selling_price_dollar_cnt": 259000, 
+      "tax_paid_amt": 1892.99, 
+      "zestimate_dollar_cnt": 1702
+    }
+  ]
+}

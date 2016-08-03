@@ -1,0 +1,17 @@
+{
+  "neighborhood_data": {
+    "mean_house_hold_size": 1.0, 
+    "mean_max_bed": 2.0, 
+    "mean_min_bed": 1.0, 
+    "median_monthly_income": 7388.0, 
+    "num_contacts_per_rental": 0.89, 
+    "percent_credit_score_over_700": 0.7042, 
+    "percent_flexible_move_in_date": 0.5867, 
+    "percent_long_term_lease": 0.6974, 
+    "percent_more_than_one_bed": 0.4868, 
+    "percent_need_parking": 0.25, 
+    "percent_own_current_home": 0.0132, 
+    "region_id": 250780, 
+    "zindex": 690400.0
+  }
+}
