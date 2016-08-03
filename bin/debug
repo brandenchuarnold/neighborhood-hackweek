@@ -1,4 +1,4 @@
-#!/Users/brandenarnold/env/clean2.7/bin/python
+#!/usr/bin/python
 
 import os
 
@@ -32,7 +32,7 @@ sys.path[0:0] = [
 
 
 
-from neighborhood_hackweek.main import app as application
+# from neighborhood_hackweek.main import app as application
 
 import neighborhood_hackweek.debug
 
